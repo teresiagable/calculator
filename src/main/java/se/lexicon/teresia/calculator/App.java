@@ -79,16 +79,34 @@ public class App {
 	}
 
 	private static String readOperator() {
+		
 		System.out.println("Enter the mathematical operator (+ - / or *): ");
 		String input = scanner.nextLine();
 		String operator = input.trim();
+		switch (operator) {
+		case "+":
+		case "-":
+		case "/":
+		case "*":
+			break;
+		default:
+			System.out.println("Not a valid operator");
+			return readOperator();
+			//break;
+		}
 		return operator;
 	}
 
 	private static double readInput() {
-		System.out.println("Enter a number: ");
-		String input = scanner.nextLine();
-		double number = Double.parseDouble(input);
+		double number;
+		try {
+			System.out.println("Enter a number: ");
+			String input = scanner.nextLine();
+			number = Double.parseDouble(input);
+		} catch (NumberFormatException e) {
+			System.out.println("Not a valid number");
+			return readInput();
+		}
 		return number;
 
 	}
